@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+<cpn :c-my-message="message" :c-movies="movies"></cpn>
+  </div> 
+  <script src="../07-循环遍历/vue.js"></script>
+  <template id="aa">
+      <div>
+      <h2>{{cMyMessage}}</h2>
+      <h3>{{cMovies}}</h3>
+      </div>
+  </template>
+  <script>
+      const cpn={
+          template:'#aa',
+        //   父组件模板传入数据，由props自定义接受数据接收在引用到子组件模板里面
+          props:{
+              cMyMessage:{
+                  type:String,
+                  default:''
+              },
+              cMovies:{
+                  type:Object,
+                  default(){
+                      return{}
+                  }
+              }
+          }
+      }
+      const app=new Vue({
+          el:"#app",
+          data:{
+              message:"aaaa",
+              movies:{
+                  name:"aaa",
+                  age:18
+              }
+          },
+          components:{
+              cpn:cpn
+          }
+      })
+  </script> 
+</body>
+</html>

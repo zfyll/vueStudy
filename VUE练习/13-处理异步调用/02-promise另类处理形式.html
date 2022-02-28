@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // promise另类调用 then(回调函数1对应resolve,回调函数2对应reject)
+        new Promise((resolve, reject) => {
+        setTimeout(() =>{
+            // resolve('Hello world')
+            reject('error message')
+        },1000)
+    }).then((data)=>{
+            // data形参传入是Hello world
+            // err形参传入的是error message
+            console.log(data);
+        },(err)=>{
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

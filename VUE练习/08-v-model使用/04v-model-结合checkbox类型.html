@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+     <div id="app">
+          <!-- 1.checkbox单选框 （注意： v-model现在绑定的是bool值）-->
+       <!-- <label for="agree">
+           <input type="checkbox" v-model="message" id="agree">同意协议
+       </label>
+       <h2>你选择的性别是： {{message}}</h2>
+       <button :disabled="!message">下一步</button> -->
+        <!-- 2.checkbox多选框（注意： v-model现在绑定的是一个数组） -->
+    <input type="checkbox" value="篮球" v-model="hobbies">篮球
+    <input type="checkbox" value="足球" v-model="hobbies">足球
+    <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+    <input type="checkbox" value="排球" v-model="hobbies">排球
+    <h2>你喜欢的运动是：{{hobbies}}</h2>
+    </div> 
+    <script src="../07-循环遍历/vue.js"></script>
+    <script>
+        const app=new Vue({
+            el:"#app",
+            data:{
+                message:"false",//单选框对应bool值
+                hobbies:[]
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+       <cpn></cpn>
+       
+         <!-- <cpn>
+             <template slot-scope="slot">
+              <span v-for="item in slot.data">{{item}}</span>
+              <span>{{slot.data.join(' * ')}}</span>
+             </template>
+         </cpn> -->
+         <cpn>
+             <!-- 目的是获取子组件中的pLanguages -->
+            <template slot-scope="slot">
+             <!-- <span v-for="item in slot.data">{{item}}</span> -->
+             <span>{{slot.abc.join(' - ')}}</span>
+            </template>
+        </cpn>
+    </div>
+    <script src="../07-循环遍历/vue.js"></script>
+    <template id="cpn">
+        <!-- <div> 
+            <slot :data="pLanguages"> 自己可以自定义
+                <ul>
+                    <li v-for="item in pLanguages"></li>
+                </ul>
+            </slot>
+         </div> -->
+     <div> 
+       <slot :abc="pLanguages">
+           <ul>
+               <li v-for="item in pLanguages"></li>
+           </ul>
+       </slot>
+    </div>
+    </template>
+    <script>
+    const app=new Vue({
+        el:"#app",
+        components:{
+            cpn:{
+                template:`#cpn`,
+                data(){
+                    return {
+                        pLanguages:['JavaScripts','C++','Java','Python']
+                    }
+                }
+            }
+            }
+    })
+    </script>
+</body>
+</html>

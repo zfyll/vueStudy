@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.使用setTimeout来模仿异步请求
+    // setTimeout(() => {
+    //     console.log('Hello world');
+    // },1000)
+
+    // 参数 -> 函数(resolve，reject)
+    // resolve ， reject本身他们又是函数
+    // 链式编程
+     new Promise((resolve,reject) => {
+    //    第一次网络请求的代码
+       setTimeout(() => {
+           resolve()
+       },1000)
+     }).then(() =>{
+        //    第一次拿到结果的处理代码
+        console.log('Hello world');
+        console.log('Hello world');
+        console.log('Hello world');
+        
+        return new Promise((resolve, reject)=>{
+            // 第二次网络请求的代码
+            setTimeout(() => {
+           resolve('aaa')
+       },1000)
+       })
+        }).then().then((data) =>{
+        // 第二次拿到结果的处理代码
+        console.log(data);
+        console.log('Hello js');
+        console.log('Hello js');
+        return new Promise((resolve, reject)=>{
+            // 第三次网络请求的代码
+            setTimeout(() => {
+           resolve(data)
+       },1000) 
+        })
+    }).then((data) =>{
+         // 第三次拿到结果的处理代码
+         console.log(data);
+        console.log('Hello vue');
+        console.log('Hello vue');
+        console.log('Hello vue');
+    })
+    // 什么情况下会用到promise?
+    // 一般情况下是有异步操作时,使用promise对这个异步操作进行封装
+    // new -> 构造函数(1.保存了一些状态信息 2,执行传入的函数)
+    // 在执行传入的回调函数时,又会传入两个参数,resolve(解决),reject(拒绝),本身又是函数
+
+    // new Promise((resolve, reject) => {
+    //     setTimeout(() =>{
+    //         // 成功的时候调用resolve(注意resolve要和then(下一步)一起用)
+    //         resolve('Hello world')
+    //         // 失败的时候调用reject(注意reject要和catch(捕获)一起用)
+    //         reject('error message')
+    //     },1000)
+    // }).then((data)=>{
+    //         // data形参传入是Hello world
+    //         console.log(data);
+    //         console.log(data);
+    //         console.log(data);
+    //         console.log(data);
+    //     }).catch((err)=>{
+    //         // err形参传入的是error message
+    //         console.log(err);
+    //     })
+        
+</script>
+</html>

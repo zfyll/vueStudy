@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 如果有多个网络请求都要同时满足的话就用promise.all
+        // 里面是个可递归的数
+        // Promise.all([
+        //     new Promise((resolve, reject)=>{
+        //         $.ajax({
+        //             url:'url1',
+        //             success:function(data){
+        //                 resolve(data)
+        //             }
+        //         })
+        //     }),
+        //     new Promise((resolve, reject)=>{
+        //         $.ajax({
+        //             url:'url2',
+        //             success:function(data){
+        //                 resolve(data)
+        //             }
+        //         })
+        //     })
+        // ])
+        // 用setTimeout来模拟下
+        Promise.all([
+            new Promise((resolve, reject)=>{
+                setTimeout(()=>{
+                    resolve({name:'why',age:18})
+                },2000)
+            }),
+            new Promise((resolve, reject)=>{
+                setTimeout(()=>{
+                    resolve({name:'wo',age:11118})
+                },1000)
+            }) 
+        ]).then((results)=>{
+            console.log(results);
+        })
+    </script>
+</body>
+</html>

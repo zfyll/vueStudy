@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+<my-cpn></my-cpn>
+<cpn></cpn>
+   </div>
+   <script src="../07-循环遍历/vue.js"></script>
+   <script>
+       //1、全局组件注册的语法糖
+       //2、创建组件构造器
+       // const cpnC= Vue.extend()(语法糖情况下可以省略直接引用一个对象替代)
+       //2.注册组件（全局组件，意味着可以在多个vue实例中引用）
+       //格式Vue.component(组件标签名，组件构造器对象（语法糖直接{template加内容}）)
+       Vue.component('my-cpn',{
+           template:`
+           <div>
+               <h2>我是标题</h2>
+               <p>我是内容</p>
+               </div>
+           `
+       })
+   const app=new Vue({
+       el:"#app",
+       data:{
+           
+       },
+       components:{
+           //cpn使用组件时的标签，cpnC组件构造器对象(局部组件语法糖)
+           cpn:{
+           template:`
+           <div>
+               <h2>我是标题</h2>
+               <p>我是666</p>
+               </div>
+           `
+       }
+       }
+   })
+   
+   </script>
+</body>
+
+</html>

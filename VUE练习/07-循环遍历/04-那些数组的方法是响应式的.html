@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in name">{{item}}</li>
+        </ul>
+        <button @click="btnclick()">按钮</button>
+    </div>
+
+    <script src="vue.js"></script>
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:{
+             name:['a','b','c']
+        },
+        methods:{
+            btnclick(){
+                //1.push方法
+                //this.name.push('aaa')
+
+                //2.pop方法删除数组中最后一个元素
+                //this.name.pop()
+
+                 //3.shift()方法删除数组中第一个元素
+                 //this.name.shift()
+
+                  //4.unshift方法在数组中最前面添加元素
+                //this.name.unshift('aaa')
+
+                 //5.splice方法作用：删除元素/插入元素/替换元素
+                 //第一个参数是开始的位置，第二个参数是从开始位置算起（开始位置为起点）删除几个元素(如果没有参数则全删)
+                 //第三个是插入元素可以多个
+                 this.name.splice(1,1,'aaa')
+                 //6.sort()排序
+                 //7.reverse()倒序
+                
+                 //注意：通过索引值修改数组中的元素原界面不会修改检查浏览器发现其实已经改变
+                //this.name[0]='bbbbb';
+            }
+        }
+
+    })
+</script>
+</body>
+
+</html>

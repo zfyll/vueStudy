@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  let mySet = new Set();
+  mySet.add(1); // Set(1) {1}
+  mySet.add(5); // Set(2) {1, 5}
+  mySet.add(5); // Set(2) {1, 5} 这里体现了值的唯一性
+  mySet.add("some text");
+  // Set(3) {1, 5, "some text"} 这里体现了类型的多样性
+  var o = { a: 1, b: 2 };
+  mySet.add(o);
+  mySet.add({ a: 1, b: 2 });
+  mySet.add(o);//不会出现
+  mySet.add({ a: 1, b: 2 }); //出现
+  console.log(mySet);
+  // Set(6) {1, 5, "some text", {…}, {…},{…}} 
+  // 这里体现了对象之间引用不同不恒等，即使值相同，Set 也能存储
+
+
+
+  // Array 转 Set
+  var mySet1 = new Set(["value1", 2, { a: 1, b: 2 }])
+  // 用...操作符，将 Set 转 Array
+  var myarray = [...mySet1]
+  console.log(myarray);//(3) ['value1', 2, {…}]
+  String
+  // String 转 Set
+  var mySet2 = new Set('hello');  // Set(4) {"h", "e", "l", "o"}
+  // 注：Set 中 toString 方法是不能将 Set 转换成 String
+
+
+  // Set对象作用
+  // 1.数组去重
+  var mySet3 = new Set([1, 2, 3, 4, 4])
+  console.log([...mySet3]);//(4) [1, 2, 3, 4]
+
+  // 2.数组并集
+  var a = new Set([1, 2, 3]);
+  var b = new Set([4, 3, 2]);
+  var union = new Set([...a, ...b]); // {1, 2, 3, 4}
+
+  // 2.数组交集
+  var a = new Set([1, 2, 3]);
+  var b = new Set([4, 3, 2]);
+  //4、b.has(x)
+  //Set.has(x) 是 set 中的一个方法。即判断当前 set 中是否含有 x，如果有返回 true，没有返回 false。
+  var intersect = new Set([...a].filter(x => b.has(x))); // {2, 3}
+</script>
+
+</html>

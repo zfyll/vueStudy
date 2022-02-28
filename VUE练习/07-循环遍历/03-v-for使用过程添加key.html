@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!--1.在遍历对象中，如果只是获取一个值，那么获取的是value--->
+        <!--使用过程添加key可以提高性能key一般与item绑定--->
+        <ul>
+            <li v-for="item in info" :key="item">{{item}}</li>
+        </ul>
+         <!--2.获取key，value格式为(value,key)--->
+         <ul>
+            <li v-for="(item,key) in info">{{item}}-{{key}}</li>
+        </ul>
+         <!--3.获取key，value,index格式为(value,key,index)--->
+         <ul>
+            <li v-for="(item,key,index) in info">{{item}}-{{key}}-{{index}}</li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:{
+            info:{
+                name:'why',
+                age:18,
+                height:188
+
+            }
+        }
+
+    })
+</script>
+</body>
+
+</html>

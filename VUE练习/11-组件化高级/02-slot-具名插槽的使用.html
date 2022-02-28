@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <my-cpn>我替换了插槽</my-cpn>里的内容只能替换没有name属性的 <slot></slot> -->
+    <!-- 如果需要指定替换的的插槽，则需要在插槽标签中设置name属性<slot name="left">左边</slot>并在组件标签内
+        所要替换插槽的内容的标签中设置属性slot属性<span slot="left">我替换了左边</span>并且属性值要和slot标签的name属性值一样
+        例如 <slot name="right">右边</slot>  <my-cpn><span slot="right">我替换了右边</span></my-cpn> 
+    -->
+   <div id="app">
+      <my-cpn><span slot="left">我替换了左边</span></my-cpn>
+      <my-cpn><span slot="center">我替换了中间</span></my-cpn>
+      <my-cpn><span slot="right">我替换了右边</span></my-cpn>
+      <my-cpn>我替换了插槽</my-cpn>
+      <my-cpn>666</my-cpn>
+   </div>
+   <script src="../07-循环遍历/vue.js"></script>
+   <template id="aaa">
+    <div>
+       <slot name="left">左边</slot>
+       <slot name="center">中间</slot>
+       <slot name="right">右边</slot>
+        <slot></slot>
+        </div>
+   </template>
+<script>
+    const cpnC= {
+        template:`#aaa `
+    }
+const app=new Vue({
+    el:"#app",
+    data:{
+       
+    },
+    components:{
+            myCpn:cpnC
+        }
+})
+</script>
+</body>
+
+</html>

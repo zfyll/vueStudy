@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 当通过methods中定义方法,以供@click调用时，需要注意参数问题 -->
+        <!-- 1.如果该方法不需要额外参数，那么方法后的()可以不添加 -->
+        <button @click="btn1Click">按钮一</button>
+        <button @click="btn1Click()">按钮一</button>
+        <!-- 如果函数需要参数，但是没有传入，那么函数的形参为undefined -->
+        <button @click="btn2Click()">按钮二</button>
+        <!-- 1.如果该方法需要额外参数，而方法后的()不添加这个时候Vue
+        会默认将浏览器生产的event事件对象作为参数传入到方法
+        -->
+        <button @click="btn2Click">按钮二</button>
+        <!-- 方法定义时，我们需要event对象，同时有需要其他参数 -->
+        <!-- 在调用方式，如何手动的获取到浏览器参数的event对象：$event -->
+        <button @click="btn3Click(123,$event)">按钮三</button>
+        <button>按钮四</button>
+    </div>
+
+    <script src="../07-循环遍历/vue.js"></script>
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:{counter:0},
+       methods:{
+       btn1Click(){
+           console.log("btn1Click");
+       },
+       btn2Click(abc){
+           console.log("-----",abc);
+       },
+       btn3Click(abc,event){
+           console.log("++++",abc,event);
+       }
+    }
+      
+       
+        
+    })
+</script>
+</body>
+
+
+</html>

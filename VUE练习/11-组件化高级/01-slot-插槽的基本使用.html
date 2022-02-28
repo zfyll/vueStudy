@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+       <!-- 
+           1.插槽的基本使用 <slot></slot>
+           2.组件标签里的值会替换slot插槽 例如 <my-cpn><span>ddd</span></my-cpn>替换插槽
+           3.如果有多个值，同时放入到组件进行替换时，一起作为替换元素
+           4.插槽的可以设置默认值 <slot><button>按钮</button></slot>
+           （如果没有值替换插槽，默认值则会出现，有值传入默认值则不会出现并值会替换插槽）
+        -->
+      <my-cpn><i>我是替换插槽里面的内容</i></my-cpn>
+
+      <my-cpn><span>我也是替换插槽里面的内容</span></my-cpn>
+
+      <my-cpn><i>我是替换插槽里面的内容</i><span>我也是替换插槽里面的内容</span></my-cpn>
+
+      <my-cpn></my-cpn>
+
+      <my-cpn></my-cpn>
+   </div>
+   <script src="../07-循环遍历/vue.js"></script>
+   <template id="aaa">
+    <div>
+        <h2>我是标题</h2>
+        <p>我是内容</p>
+        <slot><button>我是插槽设置的默认值</button></slot>
+        </div>
+   </template>
+<script>
+    const cpnC= {
+        template:`#aaa `
+    }
+const app=new Vue({
+    el:"#app",
+    data:{
+       
+    },
+    components:{
+            myCpn:cpnC
+        }
+})
+</script>
+</body>
+
+</html>

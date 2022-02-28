@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn> 
+        <cpn></cpn>
+        <cpn ref="aaa"></cpn>
+        <button @click="btnClick">按钮</button>
+    </div>
+    <script src="../07-循环遍历/vue.js"></script>
+    <template id="cpn">
+     <div>
+         <h2>我是子组件</h2>
+     </div>
+    </template>
+    <script>
+        const cpn={
+            template:`#cpn`,
+            data(){
+              return {name:'我是子组件'}
+            },
+            methods:{
+                showMessage(){
+                    console.log('showMessage');
+                }
+            }
+        }
+        const app=new Vue({
+            el:"#app",
+            components:{
+                cpn:cpn
+            },
+            methods:{
+                btnClick(){
+                    //1. $children一般是在获取全部的子组件使用的
+                    console.log(this.$children);
+                    for(let c of this.$children)
+                    {
+                     console.log(c.name);
+                     c.showMessage();
+                    }
+                    // console.log(this.$children[2].name);
+                    // 2.$refs  => 对象类型，默认是一个空的对象 要在向引用的子模版中加了命令 ref="aaa"
+                    console.log(this.$refs.aaa.name);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

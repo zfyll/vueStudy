@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../04计算属性/vue.js"></script>
+<script>
+//    const todos = document.querySelectorAll('li');
+//    Array.from()转换成数组
+//    const todosArr = Array.from(todos);第二个参数相当于map方法
+//    const names = todosArr.map(todo => todo.textContent);
+//    console.log(names)
+// const todosArr = Array.from(todos,todo => todo.textContent);
+function a () {
+    this.name = 'b'
+    console.log(a.prototype);
+    console.log(this);
+}
+const c = new a()
+c.d = 'bb'
+console.log(c.__proto__)   
+</script>
+<body>
+<!-- <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul> -->
+</body>
+</html>

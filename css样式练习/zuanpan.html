@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .outher,.wapper{
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background-color: red;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .wapper{
+        transform: rotate(27.5deg);
+    }
+    .left,.right{
+        width: 150px;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+    }
+    .left div, .right div{
+        position: absolute;
+        width: 150px;
+        height: 100%;
+    }
+    .left div{
+        transform-origin:right center ;
+    }
+    .right div{
+        transform-origin:left center ;
+    }
+    .left div{
+        transform-origin:right center ;
+    }
+    .left{
+        left: 0;
+        background-color: burlywood;
+    }
+    .right{
+        right: 0px;
+        background-color: blue;
+    }
+    .right div.one{
+        background-color: rgb(195,69,73);
+    }
+    .right div.two{
+        background-color: rgb(177,84,98);
+        transform: rotate(60deg);
+    }
+    .right div.three{
+        background-color: rgb(195,69,73);
+        transform: rotate(120deg);
+    }
+    .left div.one{
+        background-color: rgb(177,84,98);
+    }
+    .left div.two{
+        background-color: rgb(195,69,73);
+        transform: rotate(-60deg);
+    }
+    .left div.three{
+        background-color: rgb(177,84,98);
+        transform: rotate(-120deg);
+    }
+    .left .text{
+        position: absolute;
+        left: 40%;
+        top:30px;
+        transform: rotate(-30deg);
+    }
+    .right .text{
+        position: absolute;
+        left: 20%;
+        top:30px;
+        transform: rotate(30deg);
+    }
+    .circle{
+        position: absolute;
+        width: 90px;
+        height: 90px;
+        background-color: orange;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 90px;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .circle::after{
+        content: "";
+        position: absolute;
+        top: -70px;
+        left: 50%;
+        transform: translate(-50%);
+        border: 40px solid orange;
+        border-left-width: 10px;
+        border-right-width: 10px;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="outher">
+            <div class="wapper">
+                <div class="left">
+                    <div class="one"><span class="text">1号大奖</span></div>
+                    <div class="two"><span class="text">1号大奖</span></div>
+                    <div class="three"><span class="text">1号大奖</span></div>
+                </div>
+                <div class="right">
+                    <div class="one"><span class="text">1号大奖</span></div>
+                    <div class="two"><span class="text">1号大奖</span></div>
+                    <div class="three"><span class="text">1号大奖</span></div>
+                </div>
+            </div>
+            <div class="circle">
+                抽奖
+            </div>
+        </div>
+    </div>
+<script>
+    let wapper = document.querySelector(".wapper");
+    let textAll = document.querySelectorAll(".text");
+
+    let texts = ["未中奖", "安慰奖", "特等奖", "一等奖", "二等奖", "三等奖"]
+    for(let i = 0 ; i < textAll.length ; i++){
+        textAll[i].innerHTML = texts[i];
+    }
+// 控制中奖概率和奖品数量 奖品上限0~99 55个未中奖 20个安慰奖 5个特等奖 5个一等奖 5个二等奖 9个三等奖
+    let weight = [55,75,80,85,90,99];
+    let isFlag = true
+    document.querySelector(".circle").onclick=function(){
+        if (isFlag) {
+            let random = parseInt(Math.random()*100);
+            let randomWeight = weight.concat(random);
+            let aa = randomWeight.sort(function(a,b){ return a - b});
+            let randomIndex = aa.indexOf(random)
+            console.log(random);
+            switch(randomIndex){
+                case 0:
+                    run(27.5, texts[randomIndex]);
+                    break;
+                case 1:
+                    run(87.5, texts[randomIndex]);
+                    break;
+                case 2:
+                    run(147.5, texts[randomIndex]);
+                    break;
+                case 3:
+                    run(327.5, texts[randomIndex]);
+                    break;
+                case 4:
+                    run(267.5, texts[randomIndex]);
+                    break;
+                case 5:
+                    run(207.5, texts[randomIndex]);
+                    break;
+                
+            }
+        }
+  
+    }
+    let timer = null;
+        function run(angle, text){
+            isFlag = false;
+            console.log(angle, text);
+            let begin = 0;
+            let basic = 1800;
+            timer = setInterval(function(){
+                if(begin>=(basic+angle)){
+                    isFlag = true;
+                    clearInterval(timer);
+                }
+                wapper.style.transform = "rotate("+(basic+begin)+"deg)";
+                begin += Math.ceil((basic+angle - begin) * 0.1);
+            },20)
+        }
+</script>
+</body>
+
+</html>

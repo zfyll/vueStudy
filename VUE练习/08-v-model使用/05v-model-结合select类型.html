@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- select选择一个 （注意：v-model现在绑定的是一个值）-->
+         <select name="abc" id="" v-model="fruit">
+            <option value="香蕉">香蕉</option>
+            <option value="苹果">苹果</option>
+            <option value="榴莲">榴莲</option>
+        </select>
+        <h2>你喜欢的水果是：{{fruit}}</h2> 
+        <!-- select选择多个 加个multiple允许多选属性 （注意：v-model现在绑定的是一个数组）-->
+        <select name="abc" id="" v-model="fruits" multiple>
+            <option value="香蕉">香蕉</option>
+            <option value="苹果">苹果</option>
+            <option value="榴莲">榴莲</option>
+        </select>
+        <h2>你喜欢的水果是：{{fruits}}</h2> 
+    </div>
+    <script src="../07-循环遍历/vue.js"></script>
+<script>
+    const app=new Vue({
+        el:"#app",
+        data:{
+            fruit:"香蕉",
+            fruits:[]
+        }
+    })
+</script>
+</body>
+
+</html>

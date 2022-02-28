@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+       <!-- 
+        父组件模板的所有东西都会在父级作用域内编译；子组件模板的所以东西都会在
+        子级作用域内编译   
+        这里的作用域为vue实例 -->
+      <my-cpn v-show="isShow"></my-cpn>
+   </div>
+   <script src="../07-循环遍历/vue.js"></script>
+   <template id="aaa">
+    <div>
+      <p>666</p>
+        </div>
+   </template>
+<script>
+    const cpnC= {
+        template:`#aaa `,
+        data(){
+            return {
+                isShow:false
+            }
+        }
+    }
+const app=new Vue({
+    el:"#app",
+    data:{
+        isShow:true
+    },
+    components:{
+            myCpn:cpnC
+        }
+})
+</script>
+</body>
+
+</html>
